@@ -1,0 +1,37 @@
+Erro ao criar rótulos de confidencialidade na Microsoft (Sensitivy Label) 
+Erro de Cliente
+Rights Management is not active for the tenant
+
+Para ativar é necessário utilizar comandos em PowerShell
+
+## Ínicio do procedimento ##
+
+Desabilitar a restrição de politica (local)
+PS> Set-ExecutionPolicy Unrestricted
+Será perguntado se você tem certeza de desativar essa restrição, digite S para SIM
+
+Habilitar a politica para conexão remota (local)
+PS> Set-ExecutionPolicy RemoteSigned
+Novamente tecle S para SIM
+
+Instale o Módulo do AIP 
+PS> Import-Module AIPService
+
+Atualize o Módulo AIP
+PS> Update-Module -name AIPService
+
+Conecte-se ao serviço de AIP do seu tennant
+PS> Connect-AIPService
+Entre com as suas credencias do domínio, lembrando que é necessário ter previlégios para fazer esse tipo de conexão e ativação do serviço
+
+Verificando o Status do serviço AIP
+PS> Get-AipService
+O resultado mostra se o serviço está Active ou Disable (Ativado ou Desabilitado) 
+
+Se o status for Disable, execute o comando para ativar o serviço
+PS> Enable-AipService
+
+Após a ativação, execute o comando para se desconectar do serviço
+PS> Disconnect-AipService
+
+
